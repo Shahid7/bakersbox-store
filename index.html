@@ -13,118 +13,92 @@
     body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Nastaliq Urdu", sans-serif; }
     .urdu{ font-family: "Noto Nastaliq Urdu", serif; }
 
-/*     .logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: #25D366; /* WhatsApp green */
-/*     color: black;
-    font-size: 36px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer; */
+    <button class="logo" id="storeLogo">
+  <span id="storeLetter">B</span>
+  <span class="logo__inner">
+    <span class="logo__blobs">
+      <span class="logo__blob"></span>
+      <span class="logo__blob"></span>
+      <span class="logo__blob"></span>
+      <span class="logo__blob"></span>
+    </span>
+  </span>
+</button>
 
-    /* smooth animation */
-/*     transition: all 0.4s ease;
-    transform: translateY(0);
-  } */
 
-  /* Hover effect like WhatsApp’s button */
-/*   .logo:hover {
-    background-color: #000000; /* black */
-    color: #ffffff;           /* white */ */
-/*     transform: translateY(-5px); /* smooth "lift up" */
-/*     box-shadow: 0 6px 16px rgba(0,0,0,0.3); */
-/*   } */
- */
+    :root { --cyan: #0505A9; --dark: #ffffff; --borderW: 2px; }
 
-  /* ===== LOGO ANIMATION ===== */
-    .logo-btn {
-      position: relative;
-      display: inline-block;
-      padding: 20px 46px;
-      margin: 30px auto;
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 50px;
-      font-weight: bold;
-      color: #0505A9;
-      background: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      transition: color 0.5s;
-      border-radius: 30px;
-      z-index: 1;
-    }
+.logo {
+  position: relative;
+  z-index: 1;
+  width: 64px; height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--cyan);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: color .5s;
+}
+.logo:before {
+  content: "";
+  position: absolute; inset: 0;
+  border: var(--borderW) solid var(--cyan);
+  border-radius: 30px;
+  z-index: 1;
+}
+.logo:after {
+  content: "";
+  position: absolute;
+  left: calc(var(--borderW) * 1.5);
+  top: calc(var(--borderW) * 1.5);
+  width: 100%; height: 100%;
+  border-radius: 30px;
+  z-index: -2;
+  transition: all .3s .2s;
+}
+.logo:hover { color: var(--dark); }
+.logo:hover:after {
+  left: 0; top: 0;
+  transition: all .3s;
+}
 
-    .logo-btn:before {
-      content: "";
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      border: 2px solid #0505A9;
-      border-radius: 30px;
-      z-index: 1;
-    }
+.logo__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute; inset: 0;
+  border-radius: 30px;
+  background: #ffffff;
+}
+.logo__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url('#goo');
+}
+.logo__blob {
+  position: absolute;
+  top: var(--borderW);
+  width: 25%;
+  height: 100%;
+  background: var(--cyan);
+  border-radius: 100%;
+  transform: translate3d(0,150%,0) scale(1.4);
+  transition: transform .45s;
+}
+.logo__blob:nth-child(1) { left: 0%;   transition-delay: 0s; }
+.logo__blob:nth-child(2) { left: 30%;  transition-delay: .08s; }
+.logo__blob:nth-child(3) { left: 60%;  transition-delay: .16s; }
+.logo__blob:nth-child(4) { left: 90%;  transition-delay: .24s; }
+.logo:hover .logo__blob {
+  transform: translateZ(0) scale(1.4);
+}
 
-    .logo-btn:after {
-      content: "";
-      position: absolute;
-      left: 3px; top: 3px;
-      width: 100%; height: 100%;
-      background: transparent;
-      border-radius: 30px;
-      z-index: -2;
-      transition: all 0.3s 0.2s;
-    }
 
-    .logo-btn:hover {
-      color: #fff;
-    }
-    .logo-btn:hover:after {
-      left: 0; top: 0;
-      transition: all 0.3s;
-    }
-
-    .logo-btn__inner {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      border-radius: 30px;
-      background: #fff;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .logo-btn__blobs {
-      position: relative;
-      display: block;
-      height: 100%;
-      filter: url('#goo');
-    }
-
-    .logo-btn__blob {
-      position: absolute;
-      top: 2px;
-      width: 25%;
-      height: 100%;
-      background: #0505A9;
-      border-radius: 100%;
-      transform: translate3d(0,150%,0) scale(1.4);
-      transition: transform 0.45s;
-    }
-
-    .logo-btn__blob:nth-child(1) { left: 0%; transition-delay: 0s; }
-    .logo-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
-    .logo-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
-    .logo-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
-
-    .logo-btn:hover .logo-btn__blob {
-      transform: translateZ(0) scale(1.4);
-    }
     
     .pk-word{
   display:inline-block;
@@ -143,12 +117,26 @@
   </style>
 </head>
   <!-- Logo Container -->
-<div class="logo-btn" id="storeLogo"></div>
+<!-- <div class="logo-btn" id="storeLogo"></div> -->
 <body class="bg-slate-50 min-h-screen">
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
-      <div class="w-10 h-10 rounded-2xl bg-[color:var(--brand)] text-white grid place-items-center text-lg font-bold logo-btn" id= "storeLogo"></div>
+      <!-- Gooey Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 20 -10" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
+<!--       <div class="w-10 h-10 rounded-2xl bg-[color:var(--brand)] text-white grid place-items-center text-lg font-bold logo-btn" id= "storeLogo"></div> -->
       <div>
         <h1 id="storeName" class="text-xl font-extrabold tracking-tight">WhatsApp Microstore</h1>
         <p id="taglineEN" class="text-xs text-slate-500">Fast orders via WhatsApp • Cash on Delivery</p>
