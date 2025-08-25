@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhatsApp Microstore</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{ --brand:#0ea5e9; }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Nastaliq Urdu", sans-serif; }
+    .urdu{ font-family: "Noto Nastaliq Urdu", serif; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-2xl bg-[color:var(--brand)] text-white grid place-items-center text-lg font-bold">W</div>
+      <div>
+        <h1 id="storeName" class="text-xl font-extrabold tracking-tight">WhatsApp Microstore</h1>
+        <p id="taglineEN" class="text-xs text-slate-500">Fast orders via WhatsApp • Cash on Delivery</p>
+      </div>
+      <div class="ms-auto flex items-center gap-2">
+        <a id="whatsLinkTop" href="#" target="_blank" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-green-600 text-white text-sm font-semibold shadow hover:opacity-90">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.03 0C5.4 0 .03 5.37.03 12a11.88 11.88 0 0 0 3.48 8.49L0 24l3.66-3.45A11.88 11.88 0 0 0 12 24c6.63 0 12-5.37 12-12a11.88 11.88 0 0 0-3.48-8.52Zm-8.49 19.02a9.8 9.8 0 0 1-4.98-1.35l-.36-.21-2.94.9.9-2.85-.24-.39A9.8 9.8 0 0 1 2.22 12a9.78 9.78 0 0 1 16.68-6.93A9.78 9.78 0 0 1 12.03 22.5Zm5.31-7.23c-.3-.15-1.77-.87-2.04-.97-.27-.09-.48-.15-.69.15-.21.3-.81.96-.99 1.16-.18.21-.36.24-.66.09-.3-.15-1.26-.45-2.4-1.44-.9-.78-1.5-1.74-1.68-2.04-.18-.3-.02-.45.13-.6.15-.15.3-.39.45-.6.15-.21.21-.36.3-.6.09-.24.03-.45-.03-.6-.06-.15-.69-1.65-.93-2.27-.24-.57-.48-.48-.69-.48h-.6c-.21 0-.54.09-.81.39-.27.3-1.05 1.02-1.05 2.49 0 1.47 1.08 2.88 1.23 3.09.15.21 2.13 3.24 5.16 4.53.72.3 1.29.48 1.73.63.72.24 1.38.21 1.89.12.57-.09 1.77-.72 2.01-1.41.24-.69.24-1.29.15-1.41-.09-.12-.27-.18-.57-.33Z"/></svg>
+          Order on WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-slate-100 border-b">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 id="heroTitle" class="text-3xl md:text-4xl font-extrabold leading-tight">Fresh, Fast, and Delivered</h2>
+        <p id="taglineUR" class="mt-2 text-lg urdu">فوری آرڈر، واٹس ایپ پر۔ کیش آن ڈیلیوری دستیاب۔</p>
+        <ul class="mt-4 text-slate-700 text-sm list-disc ps-5">
+          <li>No app needed — orders via WhatsApp</li>
+          <li>Cash on Delivery / Bank Transfer</li>
+          <li>Delivery in 24–48 hours (city limits)</li>
+        </ul>
+      </div>
+      <img id="heroImg" src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&q=80&auto=format&fit=crop" alt="Hero" class="rounded-2xl shadow"/>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-8">
+    <!-- Catalog -->
+    <section class="lg:col-span-2">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-xl font-bold">Menu / Products</h3>
+        <input id="search" placeholder="Search…" class="px-3 py-2 rounded-xl border w-44 text-sm" />
+      </div>
+      <div id="catalog" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+    </section>
+
+    <!-- Cart / Checkout -->
+    <aside class="lg:sticky lg:top-20 h-fit bg-white rounded-2xl border p-4 shadow-sm">
+      <h3 class="text-lg font-bold mb-3">Your Cart</h3>
+      <div id="cartEmpty" class="text-slate-500 text-sm">No items yet.</div>
+      <div id="cartItems" class="space-y-3 hidden"></div>
+      <div id="totals" class="mt-4 hidden">
+        <div class="flex justify-between text-sm"><span>Subtotal</span><span id="subtotal">Rs 0</span></div>
+        <div class="flex justify-between text-sm"><span>Delivery</span><span id="deliveryFee">Rs 0</span></div>
+        <div class="flex justify-between font-extrabold text-lg mt-1"><span>Total</span><span id="total">Rs 0</span></div>
+      </div>
+      <div class="mt-4 border-t pt-4 space-y-2">
+        <input id="custName" class="w-full px-3 py-2 rounded-xl border" placeholder="Your Name / نام" />
+        <input id="custArea" class="w-full px-3 py-2 rounded-xl border" placeholder="Area & Address / علاقہ" />
+        <textarea id="custNotes" rows="2" class="w-full px-3 py-2 rounded-xl border" placeholder="Notes (time, landmark)" ></textarea>
+        <button id="checkoutBtn" class="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-600 text-white font-semibold disabled:opacity-50">Checkout on WhatsApp</button>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-3">No sign‑up required. Your order details are only sent to the seller on WhatsApp.</p>
+    </aside>
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 pb-10 text-center text-xs text-slate-500">
+    <p id="footerText">Powered by WhatsApp Microstore Template.</p>
+  </footer>
+
+<script>
+// ======= CONFIG (Edit this only) =======
+const CONFIG = {
+  storeName: "Baker's Box Karachi",
+  ownerWhatsapp: "923001234567", // Use country code, no plus. e.g., 92xxxxxxxxxx
+  currency: "Rs",
+  deliveryFee: 200,
+  taglineEN: "Order on WhatsApp • Cash on Delivery",
+  taglineUR: "واٹس ایپ پر آرڈر کریں • کیش آن ڈیلیوری",
+  heroTitle: "Homemade Treats, Delivered",
+  heroImg: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&q=80&auto=format&fit=crop",
+  footerNote: "Made with ❤️ in Pakistan",
+  products: [
+    { id: 1, name: "Chocolate Fudge Brownie (Box of 6)", price: 1200, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476e?w=800&q=80&auto=format&fit=crop" },
+    { id: 2, name: "Red Velvet Cupcake", price: 250, img: "https://images.unsplash.com/photo-1607958996333-41aef7b7a276?w=800&q=80&auto=format&fit=crop" },
+    { id: 3, name: "Cheese Bread", price: 450, img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80&auto=format&fit=crop" },
+    { id: 4, name: "Chocolate Chip Cookies (Box of 8)", price: 900, img: "https://images.unsplash.com/photo-1606313562506-9abf2fbb3fbb?w=800&q=80&auto=format&fit=crop" },
+    { id: 5, name: "Biscoff Cheesecake Slice", price: 600, img: "https://images.unsplash.com/photo-1562004760-aceed9c9d0b9?w=800&q=80&auto=format&fit=crop" },
+    { id: 6, name: "Whole Wheat Bread", price: 350, img: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80&auto=format&fit=crop" }
+  ]
+};
+// ======================================
+
+const el = (id) => document.getElementById(id);
+const fmt = (n) => `${CONFIG.currency}\u00A0${Number(n).toLocaleString()}`;
+
+function renderHeader(){
+  el('storeName').textContent = CONFIG.storeName;
+  el('taglineEN').textContent = CONFIG.taglineEN;
+  el('taglineUR').textContent = CONFIG.taglineUR;
+  el('heroTitle').textContent = CONFIG.heroTitle;
+  el('heroImg').src = CONFIG.heroImg;
+  el('footerText').textContent = CONFIG.footerNote;
+  const wa = `https://wa.me/${CONFIG.ownerWhatsapp}`;
+  el('whatsLinkTop').href = wa;
+}
+
+function renderCatalog(list){
+  const grid = el('catalog');
+  grid.innerHTML = '';
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'bg-white rounded-2xl border shadow-sm overflow-hidden flex flex-col';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}" class="h-40 w-full object-cover"/>
+      <div class="p-4 flex-1 flex flex-col">
+        <h4 class="font-semibold">${p.name}</h4>
+        <div class="mt-1 text-slate-600">${fmt(p.price)}</div>
+        <div class="mt-auto pt-3 flex items-center gap-2">
+          <input type="number" min="1" value="1" class="qty w-16 px-2 py-1 rounded-xl border" />
+          <button class="add px-3 py-2 rounded-xl bg-[color:var(--brand)] text-white text-sm font-semibold">Add</button>
+        </div>
+      </div>`;
+    card.querySelector('.add').addEventListener('click', () => {
+      const qty = parseInt(card.querySelector('.qty').value||'1');
+      addToCart(p, qty);
+    });
+    grid.appendChild(card);
+  });
+}
+
+const CART = new Map(); // id -> {product, qty}
+
+function addToCart(product, qty=1){
+  const cur = CART.get(product.id) || { product, qty:0 };
+  cur.qty += qty;
+  CART.set(product.id, cur);
+  renderCart();
+}
+function changeQty(id, delta){
+  const cur = CART.get(id);
+  if(!cur) return;
+  cur.qty += delta;
+  if(cur.qty <= 0) CART.delete(id); else CART.set(id, cur);
+  renderCart();
+}
+
+function renderCart(){
+  const empty = el('cartEmpty');
+  const list = el('cartItems');
+  list.innerHTML = '';
+  if(CART.size === 0){
+    empty.classList.remove('hidden');
+    list.classList.add('hidden');
+    el('totals').classList.add('hidden');
+    el('checkoutBtn').disabled = true;
+    return;
+  }
+  empty.classList.add('hidden');
+  list.classList.remove('hidden');
+  el('totals').classList.remove('hidden');
+  el('checkoutBtn').disabled = false;
+
+  let subtotal = 0;
+  CART.forEach(({product, qty}) => {
+    subtotal += product.price * qty;
+    const row = document.createElement('div');
+    row.className = 'flex items-center justify-between gap-2';
+    row.innerHTML = `
+      <div class="min-w-0">
+        <div class="text-sm font-semibold truncate">${product.name}</div>
+        <div class="text-xs text-slate-500">${fmt(product.price)} × ${qty}</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="px-2 py-1 rounded-lg bg-slate-100" aria-label="Decrease">-</button>
+        <span class="w-6 text-center">${qty}</span>
+        <button class="px-2 py-1 rounded-lg bg-slate-100" aria-label="Increase">+</button>
+      </div>`;
+    const [minus, plus] = row.querySelectorAll('button');
+    minus.addEventListener('click', () => changeQty(product.id, -1));
+    plus.addEventListener('click', () => changeQty(product.id, +1));
+    list.appendChild(row);
+  });
+
+  el('subtotal').textContent = fmt(subtotal);
+  el('deliveryFee').textContent = fmt(CONFIG.deliveryFee);
+  el('total').textContent = fmt(subtotal + CONFIG.deliveryFee);
+}
+
+function checkout(){
+  if(CART.size === 0) return alert('Cart is empty');
+  const name = el('custName').value.trim();
+  const area = el('custArea').value.trim();
+  const notes = el('custNotes').value.trim();
+  if(!name || !area){
+    alert('Please enter your name and area/address.');
+    return;
+  }
+  let msg = `Order for ${CONFIG.storeName}%0A`;
+  msg += `Name: ${name}%0A`;
+  msg += `Area/Address: ${area}%0A`;
+  msg += `%0AItems:%0A`;
+  let subtotal = 0;
+  CART.forEach(({product, qty}) => {
+    subtotal += product.price * qty;
+    msg += `• ${product.name} × ${qty} — ${CONFIG.currency} ${product.price * qty}%0A`;
+  });
+  msg += `%0ASubtotal: ${CONFIG.currency} ${subtotal}%0A`;
+  msg += `Delivery: ${CONFIG.currency} ${CONFIG.deliveryFee}%0A`;
+  msg += `Total: ${CONFIG.currency} ${subtotal + CONFIG.deliveryFee}%0A`;
+  if(notes) msg += `%0ANotes: ${notes}%0A`;
+  msg += `%0AThank you! Please confirm availability.`;
+
+  const phone = (CONFIG.ownerWhatsapp||'').replace(/\D/g,'');
+  if(!/^\d{10,15}$/.test(phone)){
+    alert('Seller WhatsApp number is not set correctly.');
+    return;
+  }
+  const url = `https://wa.me/${phone}?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+// Search
+el('search').addEventListener('input', (e)=>{
+  const q = e.target.value.toLowerCase();
+  const filtered = CONFIG.products.filter(p => p.name.toLowerCase().includes(q));
+  renderCatalog(filtered);
+});
+
+// Init
+renderHeader();
+renderCatalog(CONFIG.products);
+el('checkoutBtn').addEventListener('click', checkout);
+</script>
+</body>
+</html>
