@@ -12,8 +12,51 @@
     :root{ --brand:#0ea5e9; }
     body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Nastaliq Urdu", sans-serif; }
     .urdu{ font-family: "Noto Nastaliq Urdu", serif; }
+
+    .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    /* smooth animation */
+    transition: all 0.4s ease;
+    transform: translateY(0);
+  }
+
+  /* Hover effect like WhatsApp’s button */
+  .logo:hover {
+    background-color: #000000; /* black */
+    color: #ffffff;           /* white */
+    transform: translateY(-5px); /* smooth "lift up" */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  }
+
+    .pk-word{
+  display:inline-block;
+  transform-origin: 50% 70%;
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1);
+}
+.pk-word:hover{
+  transform: translateY(-1px) rotate(-6deg) scale(1.1);
+}
+
+/* respect reduced-motion users */
+@media (prefers-reduced-motion: reduce){
+  .pk-word{ transition:none !important; transform:none !important; }
+}
+    
   </style>
 </head>
+  <!-- Logo Container -->
+<div class="logo" id="storeLogo"></div>
 <body class="bg-slate-50 min-h-screen">
   <!-- Header -->
   <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b">
@@ -106,6 +149,16 @@ const CONFIG = {
 };
 // ======================================
 
+// Take the first letter from CONFIG.storeName
+  document.addEventListener("DOMContentLoaded", () => {
+    const logo = document.getElementById("storeLogo");
+    if (typeof CONFIG !== "undefined" && CONFIG.storeName) {
+      logo.textContent = CONFIG.storeName.charAt(0).toUpperCase();
+    } else {
+      logo.textContent = "S"; // fallback
+    }
+  });
+  
 const el = (id) => document.getElementById(id);
 const fmt = (n) => `${CONFIG.currency}\u00A0${Number(n).toLocaleString()}`;
 
@@ -115,7 +168,9 @@ function renderHeader(){
   el('taglineUR').textContent = CONFIG.taglineUR;
   el('heroTitle').textContent = CONFIG.heroTitle;
   el('heroImg').src = CONFIG.heroImg;
-  el('footerText').textContent = CONFIG.footerNote;
+  const note = CONFIG.footerNote || '';
+// Wrap every occurrence of “Pakistan” with a span that has our animation class
+el('footerText').innerHTML = note.replace(/Pakistan/gi, '<span class="pk-word">$&</span>');
   const wa = `https://wa.me/${CONFIG.ownerWhatsapp}`;
   el('whatsLinkTop').href = wa;
 }
