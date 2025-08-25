@@ -229,7 +229,7 @@ const CONFIG = {
 
 // Take the first letter from CONFIG.storeName
   document.addEventListener("DOMContentLoaded", () => {
-    const logo = document.getElementById("storeLogo");
+    const logo = document.getElementById("storeLetter");
     if (typeof CONFIG !== "undefined" && CONFIG.storeName) {
       logo.textContent = CONFIG.storeName.charAt(0).toUpperCase();
     } else {
